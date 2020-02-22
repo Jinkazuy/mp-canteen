@@ -1,0 +1,1 @@
+<view class="star-wrapper _div"><view class="star-nor _div"></view><view class="star-fill _div" style="{{'width:'+(scoreProportion+'%')+';'}}"></view></view>

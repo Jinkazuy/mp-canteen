@@ -1,0 +1,94 @@
+.feedback {
+  padding: 30rpx 30rpx 0;
+}
+.feedback .tt-area-box {
+  width: 100%;
+  background-color: #f4f4f4;
+  border-radius: 6rpx;
+}
+.feedback .tt-area-box .pm-type-sel {
+  padding: 20rpx 20rpx 0;
+  border-bottom: 1rpx solid #a0a0a0;
+  box-sizing: border-box;
+}
+.feedback .tt-area-box .pm-type-sel .tt-tips {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1;
+  margin-bottom: 20rpx;
+}
+.feedback .tt-area-box .pm-type-sel .pm-type-item {
+  display: inline-block;
+  padding: 14rpx 30rpx;
+  background-color: #fff;
+  border: 1rpx solid #a0a0a0;
+  border-radius: 10rpx;
+  line-height: 1;
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 24rpx;
+  color: #666;
+  margin: 0 10rpx 20rpx 0;
+}
+.feedback .tt-area-box .pm-type-sel .pm-type-item-act {
+  border: 1rpx solid #0177bf;
+  color: #0177bf;
+}
+.feedback .tt-area-box .tt-area {
+  position: relative;
+}
+.feedback .tt-area-box .tt-area textarea {
+  width: 100%;
+  padding: 10rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+.feedback .tt-area-box .tt-area .placehoders,
+.feedback .tt-area-box .tt-area .number-tips {
+  position: absolute;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1;
+}
+.feedback .tt-area-box .tt-area .placehoders {
+  top: 30rpx;
+  left: 30rpx;
+}
+.feedback .tt-area-box .tt-area .number-tips {
+  right: 12rpx;
+  bottom: 12rpx;
+}
+.feedback .submit-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.feedback .van-button--primary {
+  margin: 40rpx auto 0 !important;
+  width: 690rpx;
+  color: #fff !important;
+  border-radius: 10rpx !important;
+  background-color: #0177bf !important;
+  border: none !important;
+  font-size: 30rpx !important;
+  line-height: 36rpx !important;
+  -webkit-transition: all 0.4s !important;
+  transition: all 0.4s !important;
+}
+.feedback .submit-btn-no .van-button--primary {
+  background-color: #a0a0a0 !important;
+}
+.feedback .cai {
+  width: 400rpx;
+  height: 400rpx;
+  background-color: #fff;
+}
+.feedback .cai ._img {
+  width: 100%;
+  height: 100%;
+}
+

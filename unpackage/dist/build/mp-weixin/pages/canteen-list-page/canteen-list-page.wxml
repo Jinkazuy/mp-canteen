@@ -1,0 +1,1 @@
+<view class="canteen-list-page _div"><view class="canteen-list-page-title _div">第一食堂档口列表</view><stalls-card vue-id="1" bind:__l="__l"></stalls-card><view class="tips _div"><label class="_span">选择档口开始点餐</label><view class="bg-line _div"></view></view></view>

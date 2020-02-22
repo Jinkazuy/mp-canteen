@@ -1,0 +1,398 @@
+{
+	"pages": [ 
+		// 首页
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "智慧食堂",
+				// 开启下拉刷新
+				"enablePullDownRefresh": true,
+				// 距离页面底部多少像素触发onReachBottom事件
+				"onReachBottomDistance": 50
+			}
+		},
+		// 订单
+		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "订单",
+				// 开启下拉刷新
+				"enablePullDownRefresh": true,
+				// 距离页面底部多少像素触发onReachBottom事件
+				"onReachBottomDistance": 50,
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					// tablayout切换用↓
+					"van-tab": "/wxcomponents/weapp/dist/tab/index",
+					"van-tabs": "/wxcomponents/weapp/dist/tabs/index"
+				}
+			}
+		},
+		// 订单详情
+		{
+			"path": "pages/order_detail/order_detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index",
+				}
+			}
+		},
+		// 评价
+		{
+			"path": "pages/order_evaluate/order_evaluate",
+			"style": {
+				"navigationBarTitleText": "评价",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-rate": "/wxcomponents/weapp/dist/rate/index"
+				}
+			}
+		},
+		// 我的
+		{
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "我的",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 余额
+		{
+			"path": "pages/me_balance/me_balance",
+			"style": {
+				"navigationBarTitleText": "余额",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 提现
+		{
+			"path": "pages/me_cash_withdrawal/me_cash_withdrawal",
+			"style": {
+				"navigationBarTitleText": "提现",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-field": "/wxcomponents/weapp/dist/field/index"
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 提现-成功
+		{
+			"path": "pages/me_cash_withdrawal_process/me_cash_withdrawal_process",
+			"style": {
+				"navigationBarTitleText": "提现",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 充值
+		{
+			"path": "pages/me_recharge/me_recharge",
+			"style": {
+				"navigationBarTitleText": "充值",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 充值记录
+		{
+			"path": "pages/me_recharge_record/me_recharge_record",
+			"style": {
+				"navigationBarTitleText": "充值记录",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					// "van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 用户信息
+		{
+			"path": "pages/me_userInfo/me_userInfo",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		// 身份选择
+		{
+			"path": "pages/me_userInfo_editIdentity/me_userInfo_editIdentity",
+			"style": {
+				"navigationBarTitleText": "选择人员类别",// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 填写员工编号
+		{
+			"path": "pages/me_userInfo_editUserIdCard/me_userInfo_editUserIdCard",
+			"style": {
+				"navigationBarTitleText": "填写员工编号",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 我的地址
+		{
+			"path": "pages/me_userAddrs/me_userAddrs",
+			"style": {
+				"navigationBarTitleText": "我的地址",
+				"usingComponents":{
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 修改地址
+		{
+			"path": "pages/me_userAddrs_edit/me_userAddrs_edit",
+			"style": {
+				"navigationBarTitleText": "修改地址",
+				"usingComponents":{
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// 意见反馈
+		{
+			"path": "pages/me_feedback/me_feedback",
+			"style": {
+				"navigationBarTitleText": "我的地址",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					// 浮层
+					"van-popup": "/wxcomponents/weapp/dist/popup/index"
+				}
+			}
+		},
+		// 修改手机号
+		{
+			"path": "pages/me_editUserPhone/me_editUserPhone",
+			"style": {
+				"navigationBarTitleText": "我的地址"
+			}
+		},
+		// 搜索页
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		// 定位页
+		{
+			"path": "pages/location/location",
+			"style": {
+				"navigationBarTitleText": "定位",
+				"usingComponents": {
+				  "van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		},
+		// banner详情页
+		{
+			"path": "pages/banner-detail/banner-detail",
+			"style": {
+				"navigationBarTitleText": "banner详情页"
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+			}
+		},
+		// 公告详情页
+		{
+			"path": "pages/notice-detail/notice-detail",
+			"style": {
+				"navigationBarTitleText": "公告详情页"
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+			}
+		},
+		// 档口列表页
+		{
+			"path": "pages/canteen-list-page/canteen-list-page",
+			"style": {
+				"navigationBarTitleText": "档口列表"
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+			}
+		},
+		// 档口详情
+		{
+			"path": "pages/stallsPage/stallsPage",
+			"style": {
+				"navigationBarTitleText": "档口详情",
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+				// 下方是使用有赞团队的移动UI框架
+				"usingComponents":{
+					// tablayout切换用↓
+					"van-tab": "/wxcomponents/weapp/dist/tab/index",
+					"van-tabs": "/wxcomponents/weapp/dist/tabs/index",
+					// 浮层
+					"van-popup": "/wxcomponents/weapp/dist/popup/index"
+					
+				},
+				// 不允许页面上下滚动,这样就不会影响商品列表滚动时错误滚动页面，造成用户体验下降的情况
+				// "bounce": "none" 和 "disableScroll"都要设置
+				"app-plus": {  
+					"bounce": "none"  
+				},
+				"disableScroll": true
+			}
+		},
+		// 确认订单、支付页
+		{
+			"path": "pages/confirmationOrder/confirmationOrder",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+				// 下方是使用有赞团队的移动UI框架
+				"usingComponents":{
+					// tablayout切换用↓
+					// "van-tab": "/wxcomponents/weapp/dist/tab/index",
+					// "van-tabs": "/wxcomponents/weapp/dist/tabs/index",
+					// // 浮层
+					// "van-popup": "/wxcomponents/weapp/dist/popup/index"
+					
+				},
+				// 不允许页面上下滚动,这样就不会影响商品列表滚动时错误滚动页面，造成用户体验下降的情况
+				// "bounce": "none" 和 "disableScroll"都要设置
+				"app-plus": {  
+					"bounce": "none"  
+				},
+				"disableScroll": true
+			}
+		},
+		// 支付成功结果页
+		{
+			"path": "pages/succOrder/succOrder",
+			"style": {
+				"navigationBarTitleText": "支付成功",
+				// // 开启下拉刷新
+				// "enablePullDownRefresh": true,
+				// // 距离页面底部多少像素触发onReachBottom事件
+				// "onReachBottomDistance": 50
+				// 下方是使用有赞团队的移动UI框架
+				"usingComponents":{
+					// tablayout切换用↓
+					// "van-tab": "/wxcomponents/weapp/dist/tab/index",
+					// "van-tabs": "/wxcomponents/weapp/dist/tabs/index",
+					// // 浮层
+					// "van-popup": "/wxcomponents/weapp/dist/popup/index"
+					
+				}
+				// ,
+				// // 不允许页面上下滚动,这样就不会影响商品列表滚动时错误滚动页面，造成用户体验下降的情况
+				// // "bounce": "none" 和 "disableScroll"都要设置
+				// "app-plus": {  
+				// 	"bounce": "none"  
+				// },
+				// "disableScroll": true
+			}
+		},
+		
+		// 登录页
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
+			}
+		}
+	],
+	"permission": {
+	    "scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置接口的效果展示"
+	    }
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#fff"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#0177BF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/images/tabbar/home.png",
+			"selectedIconPath": "static/images/tabbar/home-select.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/order/order",
+			"iconPath": "static/images/tabbar/order.png",
+			"selectedIconPath": "static/images/tabbar/order-select.png",
+			"text": "订单"
+		},  {
+			"pagePath": "pages/me/me",
+			"iconPath": "static/images/tabbar/wode.png",
+			"selectedIconPath": "static/images/tabbar/wode-select.png",
+			"text": "我的"
+		}
+		]
+	}
+}

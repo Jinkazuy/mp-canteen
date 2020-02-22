@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/order_detail/order_detail",
+    "pages/order_evaluate/order_evaluate",
+    "pages/me/me",
+    "pages/me_balance/me_balance",
+    "pages/me_cash_withdrawal/me_cash_withdrawal",
+    "pages/me_cash_withdrawal_process/me_cash_withdrawal_process",
+    "pages/me_recharge/me_recharge",
+    "pages/me_recharge_record/me_recharge_record",
+    "pages/me_userInfo/me_userInfo",
+    "pages/me_userInfo_editIdentity/me_userInfo_editIdentity",
+    "pages/me_userInfo_editUserIdCard/me_userInfo_editUserIdCard",
+    "pages/me_userAddrs/me_userAddrs",
+    "pages/me_userAddrs_edit/me_userAddrs_edit",
+    "pages/me_feedback/me_feedback",
+    "pages/me_editUserPhone/me_editUserPhone",
+    "pages/search/search",
+    "pages/location/location",
+    "pages/banner-detail/banner-detail",
+    "pages/notice-detail/notice-detail",
+    "pages/canteen-list-page/canteen-list-page",
+    "pages/stallsPage/stallsPage",
+    "pages/confirmationOrder/confirmationOrder",
+    "pages/succOrder/succOrder",
+    "pages/login/login"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0177BF",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home-select.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "iconPath": "static/images/tabbar/order.png",
+        "selectedIconPath": "static/images/tabbar/order-select.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "static/images/tabbar/wode.png",
+        "selectedIconPath": "static/images/tabbar/wode-select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap3.json"
+}

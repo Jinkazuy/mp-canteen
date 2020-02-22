@@ -1,0 +1,6 @@
+#index .banner-wrapper {
+/* margin: 10px 0 30rpx; */
+  height: 220rpx;
+  margin: 10rpx 0 20rpx;
+}
+

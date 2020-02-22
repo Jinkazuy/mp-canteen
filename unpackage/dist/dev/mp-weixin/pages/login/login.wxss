@@ -1,0 +1,56 @@
+#page-login {
+  position: relative;
+}
+.logo-wrapper {
+  width: 100%;
+  height: 200rpx;
+  margin-top: 154rpx;
+  text-align: center;
+}
+.logo-wrapper>._img {
+  display: block;
+  margin: 0 auto;
+  width: 120rpx;
+  height: 120rpx;
+}
+.logo-wrapper>._p {
+  margin-top: 20rpx;
+  color: #333;
+  font-weight: 700;
+}
+.page-login-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.van-button--primary {
+  margin: 100rpx auto 0 !important;
+  width: 600rpx;
+  color: #fff !important;
+  border-radius: 16rpx !important;
+  background-color: #0177bf !important;
+  border: none !important;
+  font-size: 36rpx !important;
+  line-height: 36rpx !important;
+}
+.log-tips {
+  position: absolute;
+  top: 900rpx;
+  width: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  text-align: center;
+}
+.log-tips ._p {
+  line-height: 1;
+  color: #999;
+  font-size: 24rpx;
+}
+.log-tips ._p ._span {
+  color: #0177bf;
+}
+

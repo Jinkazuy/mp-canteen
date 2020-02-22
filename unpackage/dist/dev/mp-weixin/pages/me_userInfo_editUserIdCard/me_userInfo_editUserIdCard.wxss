@@ -1,0 +1,63 @@
+.edit-user-idcard {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.edit-user-idcard .inp {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 100rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.edit-user-idcard .inp .sp {
+  -webkit-flex-basis: 90rpx;
+          flex-basis: 90rpx;
+  font-size: 30rpx;
+  color: #666;
+  line-height: 100rpx;
+  margin-right: 2%;
+}
+.edit-user-idcard .inp input {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  height: 100%;
+  border: none;
+}
+.edit-user-idcard .inp .placehoders {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1;
+}
+.edit-user-idcard .inp .inp-tisp {
+  line-height: 100rpx;
+  -webkit-flex-basis: 160rpx;
+          flex-basis: 160rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.edit-user-idcard .submit-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.edit-user-idcard .van-button--primary {
+  margin: 40rpx auto 0 !important;
+  width: 690rpx;
+  color: #fff !important;
+  border-radius: 10rpx !important;
+  background-color: #0177bf !important;
+  border: none !important;
+  font-size: 30rpx !important;
+  line-height: 36rpx !important;
+}
+.edit-user-idcard .discount-tips {
+  color: #999;
+  font-size: 20rpx;
+  line-height: 1;
+  margin-top: 20rpx;
+}
+

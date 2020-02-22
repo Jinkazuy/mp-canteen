@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "定位",
+  "usingComponents": {
+    "van-toast": "/wxcomponents/weapp/dist/toast/index"
+  }
+}

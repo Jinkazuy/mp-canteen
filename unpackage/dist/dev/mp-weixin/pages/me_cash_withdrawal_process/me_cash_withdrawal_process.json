@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "提现",
+  "usingComponents": {
+    "van-button": "/wxcomponents/weapp/dist/button/index"
+  }
+}

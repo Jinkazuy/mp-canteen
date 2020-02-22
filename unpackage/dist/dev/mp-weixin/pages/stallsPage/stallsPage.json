@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "档口详情",
+  "disableScroll": true,
+  "usingComponents": {
+    "van-tab": "/wxcomponents/weapp/dist/tab/index",
+    "van-tabs": "/wxcomponents/weapp/dist/tabs/index",
+    "van-popup": "/wxcomponents/weapp/dist/popup/index",
+    "goods-scroll": "/components/stallsPage/goodsScroll",
+    "star": "/components/layout/star",
+    "goods-car": "/components/stallsPage/goodscarBar",
+    "adsub-symbols": "/components/stallsPage/adsubSymbols",
+    "evaluate-list-item": "/components/stallsPage/evaluateListItem"
+  }
+}

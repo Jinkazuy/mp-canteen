@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "余额",
+  "usingComponents": {
+    "van-button": "/wxcomponents/weapp/dist/button/index"
+  }
+}

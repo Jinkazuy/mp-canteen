@@ -1,0 +1,37 @@
+.me-recharge-record {
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.me-recharge-record .recharge-record-item {
+  width: 100%;
+  border-bottom: 1rpx solid #eee;
+  box-sizing: border-box;
+}
+.me-recharge-record .recharge-record-item .recharge-record-item-tit-amount,
+.me-recharge-record .recharge-record-item .recharge-record-item-date-balance {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  line-height: 1;
+}
+.me-recharge-record .recharge-record-item .recharge-record-item-tit-amount {
+  font-size: 30rpx;
+  color: #333;
+  margin: 28rpx 0 20rpx;
+}
+.me-recharge-record .recharge-record-item .recharge-record-item-tit-amount .item-amount {
+  font-weight: 700;
+}
+.me-recharge-record .recharge-record-item .recharge-record-item-date-balance {
+  margin: 0 0 20rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+

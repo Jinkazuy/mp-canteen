@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "智慧食堂",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "search-bar": "/components/index/searchBar",
+    "special-banner": "/components/index/specialBanner",
+    "noti": "/components/index/noti",
+    "change-region": "/components/index/changeRegion",
+    "canteen-list": "/components/index/canteenList"
+  }
+}

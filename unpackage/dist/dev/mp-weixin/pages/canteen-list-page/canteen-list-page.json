@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "档口列表",
+  "usingComponents": {
+    "stalls-card": "/components/canteen-list-page/stallsCard"
+  }
+}

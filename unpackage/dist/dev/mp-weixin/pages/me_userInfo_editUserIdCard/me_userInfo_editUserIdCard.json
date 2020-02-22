@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "填写员工编号",
+  "usingComponents": {
+    "van-button": "/wxcomponents/weapp/dist/button/index",
+    "van-toast": "/wxcomponents/weapp/dist/toast/index"
+  }
+}

@@ -1,0 +1,94 @@
+.order_evaluate {
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+.order_evaluate .order_evaluate-box {
+  border: 1rpx solid #dcdcdc;
+  border-radius: 10rpx;
+  padding: 20rpx 20rpx;
+  box-sizing: border-box;
+}
+.order_evaluate .order_evaluate-box .stalls-tit {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-bottom: 64rpx;
+}
+.order_evaluate .order_evaluate-box .stalls-tit .img-box {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-right: 50rpx;
+  background-color: #eee;
+}
+.order_evaluate .order_evaluate-box .stalls-tit .img-box ._img {
+  width: 100%;
+  height: 100;
+}
+.order_evaluate .order_evaluate-box .stalls-tit .name-star {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.order_evaluate .order_evaluate-box .stalls-tit .name-star .stalls-name {
+  width: 470rpx;
+  margin-bottom: 28rpx;
+  font-weight: 700;
+  font-size: 36rpx;
+  line-height: 1;
+  color: #666;
+}
+.order_evaluate .order_evaluate-box .stalls-tit .name-star .evaluate-star {
+  height: 60rpx;
+  width: 350rpx;
+}
+.order_evaluate .order_evaluate-box .tt-area {
+  position: relative;
+}
+.order_evaluate .order_evaluate-box .tt-area textarea {
+  width: 100%;
+  padding: 10rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  line-height: 1.4;
+  background-color: #fafafa;
+}
+.order_evaluate .order_evaluate-box .tt-area .placehoders,
+.order_evaluate .order_evaluate-box .tt-area .number-tips {
+  position: absolute;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1;
+}
+.order_evaluate .order_evaluate-box .tt-area .placehoders {
+  top: 30rpx;
+  left: 30rpx;
+}
+.order_evaluate .order_evaluate-box .tt-area .number-tips {
+  right: 12rpx;
+  bottom: 12rpx;
+}
+.order_evaluate .submit-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.order_evaluate .van-button--primary {
+  margin: 40rpx auto 0 !important;
+  width: 690rpx;
+  color: #fff !important;
+  border-radius: 10rpx !important;
+  background-color: #0177bf !important;
+  border: none !important;
+  font-size: 30rpx !important;
+  line-height: 36rpx !important;
+  -webkit-transition: all 0.4s !important;
+  transition: all 0.4s !important;
+}
+.order_evaluate .submit-btn-no .van-button--primary {
+  background-color: #fafafa !important;
+  color: #999 !important;
+}
+

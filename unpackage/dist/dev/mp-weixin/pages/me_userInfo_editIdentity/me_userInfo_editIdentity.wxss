@@ -1,0 +1,38 @@
+.identity {
+  width: 100%;
+}
+.identity .identity-box-in,
+.identity .identity-box-out {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.identity .identity-box-in ._img,
+.identity .identity-box-out ._img {
+  display: block;
+  width: 230rpx;
+  height: 230rpx;
+  margin-bottom: 30rpx;
+}
+.identity .identity-box-in ._p,
+.identity .identity-box-out ._p {
+  font-size: 30rxp;
+  color: #666;
+  text-align: center;
+  line-height: 1;
+}
+.identity .identity-box-in {
+  margin: 130rpx 0 100rpx 0;
+}
+

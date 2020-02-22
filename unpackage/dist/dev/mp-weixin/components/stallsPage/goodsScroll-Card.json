@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "adsub-symbols": "/components/stallsPage/adsubSymbols"
+  }
+}
