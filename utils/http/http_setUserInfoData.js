@@ -61,6 +61,8 @@ export const http_setUserInfoData = function(dataObj) {
 				// 然后这里拉取用户最新信息,同步到本地即可
 				let res = await http_getUserInfoData()
 				if(res) {
+					console.log('重新获取用户信息同步')
+					console.log(store.getters.store_UserInfoData)
 					resolve(true)
 				} else {
 					resolve(true)

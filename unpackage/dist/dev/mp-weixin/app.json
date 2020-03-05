@@ -4,6 +4,8 @@
     "pages/order/order",
     "pages/order_detail/order_detail",
     "pages/order_evaluate/order_evaluate",
+    "pages/order_evaluate_result/order_evaluate_result",
+    "pages/order_refund_detail/order_refund_detail",
     "pages/me/me",
     "pages/me_balance/me_balance",
     "pages/me_cash_withdrawal/me_cash_withdrawal",
@@ -11,12 +13,15 @@
     "pages/me_recharge/me_recharge",
     "pages/me_recharge_record/me_recharge_record",
     "pages/me_userInfo/me_userInfo",
+    "pages/me_faceUpLoad/me_faceUpLoad",
+    "pages/me_faceUpLoad_succ/me_faceUpLoad_succ",
     "pages/me_userInfo_editIdentity/me_userInfo_editIdentity",
     "pages/me_userInfo_editUserIdCard/me_userInfo_editUserIdCard",
     "pages/me_userAddrs/me_userAddrs",
     "pages/me_userAddrs_edit/me_userAddrs_edit",
     "pages/me_feedback/me_feedback",
     "pages/me_editUserPhone/me_editUserPhone",
+    "pages/me_editUserPhone_verify/me_editUserPhone_verify",
     "pages/search/search",
     "pages/location/location",
     "pages/banner-detail/banner-detail",
@@ -65,6 +70,5 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap3.json"
+  "usingComponents": {}
 }

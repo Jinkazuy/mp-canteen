@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "我的地址",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "/wxcomponents/weapp/dist/button/index",
+    "van-toast": "/wxcomponents/weapp/dist/toast/index",
+    "van-popup": "/wxcomponents/weapp/dist/popup/index"
+  }
 }

@@ -1,5 +1,9 @@
 {
   "navigationBarTitleText": "确认订单",
   "disableScroll": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "van-toast": "/wxcomponents/weapp/dist/toast/index",
+    "van-popup": "/wxcomponents/weapp/dist/popup/index",
+    "van-button": "/wxcomponents/weapp/dist/button/index"
+  }
 }

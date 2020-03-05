@@ -37,3 +37,185 @@ export const setUserInfo = function ({commit, state}, {list, index}) {
   // 播放器状态：播放
   commit(types.SET_PLAYING_STATE, true)
 }
+
+// 添加/减少  某个食堂下/某个档口的购物车中商品
+export const setUserGoodsCar = function ({commit, state}, {canteenId,stallId, goodsId, count, goodsInfo}) {
+ 
+	// 点击加减号传过来的内容
+	console.log('食堂ID => ' + canteenId)
+	console.log('档口ID => ' + stallId)
+	console.log('商品ID => ' + goodsId)
+	console.log('操作数量 => ' + count)
+	console.log('商品信息 => ' + goodsInfo)
+	
+	// 这里循环state下用户购物车的数据
+	// 先判断购物车是否是空的,如果是空的那么就直接追加
+	if(state.store_userGoodsCarDatas.length>0) {
+		// 如果购物车有数据,则循环查找
+		console.log('购物车有数据')
+		
+		// 找到该食堂的标记符,如果循环完了,这个标记符还是false,说明购物车中没有该食堂的数据
+		let canteenFlag = false
+		for(let i = 0; i < state.store_userGoodsCarDatas.length; i++) {
+			if(state.store_userGoodsCarDatas[i].canteenId == canteenId) {
+				console.log('购物车有该食堂数据')
+				// 将标记符改为true
+				let canteenFlag = true
+				let stallsFlag = false
+				// 找到该食堂了,那么再往下查找, 是否有该档口
+				for(let k = 0; k < state.store_userGoodsCarDatas[i].stalls.length; k++) {
+					
+					if(state.store_userGoodsCarDatas[i].stalls[k].stallsId == stallId) {
+						console.log('购物车有该档口数据')
+						let stallsFlag = true
+						let goodsFlag = false
+						// 继续往下查找,是否有该商品数据
+						for (let j = 0; j < state.store_userGoodsCarDatas[i].stalls[k].goodsList.length; j++) {
+							
+							if(state.store_userGoodsCarDatas[i].stalls[k].goodsList[j].goodsId == goodsId) {
+								let goodsFlag = true
+								console.log('购物车有商品的数据直接 + 或 -')
+								state.store_userGoodsCarDatas[i].stalls[k].goodsList[j].count += count
+								// 这里还要确保该商品信息已经同步了
+								state.store_userGoodsCarDatas[i].stalls[k].goodsList[j].goodsInfo = goodsInfo
+								console.log('购物车中,该商品信息↓')
+								console.log(state.store_userGoodsCarDatas[i].stalls[k].goodsList[j])
+								// 减价完之后再判断当前商品数是否小于0,如果小于0话,那么就=0
+								// 而且这里还要判断,商品的余量是多少,不能大于商品的剩余量
+								if(state.store_userGoodsCarDatas[i].stalls[k].goodsList[j].count<=0) {
+									state.store_userGoodsCarDatas[i].stalls[k].goodsList[j].count=0
+									// 既然等于0了,就应该清楚这个商品的信息
+									console.log('有个商品等于0了')
+									if(stm) {
+										clearTimeout(stm)
+									}
+									let stm = setTimeout(()=>{
+										state.store_userGoodsCarDatas[i].stalls[k].goodsList.splice(j,1)
+									},100)
+									console.log(state.store_userGoodsCarDatas[i])
+								}
+								return
+							}
+						} // 查找商品循环结束, 此时商品标记符为false的话,那么说明: 购物车中,有该食堂,也有该档口,但是没有该商品数据,
+						// 那么此时就将商品的数据直接插入
+						if(!goodsFlag) {
+							let goodsDatas = {
+								goodsId,
+								count: 1,
+								goodsInfo
+							}
+								
+							console.log('购物车中,有该食堂数据,有该档口数据, 但没有该商品数据, 直接将该商品追加进去')
+							state.store_userGoodsCarDatas[i].stalls[k].goodsList.push(goodsDatas)
+							console.log('此时用户购物车数据↓')
+							console.log(state.store_userGoodsCarDatas)
+						}
+						return
+					}
+				} // 查找档口循环结束, 如果标记符为false,说明购物车中,有该食堂,但是没有该档口,那么直接将档口信息插入到这个食堂数据中
+				if(!stallsFlag) {
+					let stallsDatas = {
+						stallsId: stallId,
+						goodsList: [
+							{
+								goodsId,
+								count: 1,
+								goodsInfo
+							}
+						]
+					}
+						
+					console.log('购物车中,有该食堂数据,但没有该档口数据,直接将该档口/该商品追加进去')
+					state.store_userGoodsCarDatas[i].stalls.push(stallsDatas)
+					console.log('此时用户购物车数据↓')
+					console.log(state.store_userGoodsCarDatas)
+				}
+				
+				return
+			}
+		}// 查找食堂循环结束,如果canteenFlag是false,说明该购物车下没有该食堂数据,那么直接将该食堂/档口/商品数据插入
+		if(!canteenFlag) {
+			// 如果没有该食堂数据,那么直接追加食堂数据、档口数据、食品数据
+			// 直接追加数据
+			let canteenDatas = {
+				canteenId,
+				stalls: [
+					{
+						stallsId: stallId,
+						goodsList: [
+							{
+								goodsId,
+								count: 1,
+								goodsInfo
+							}
+						]
+					}
+				]
+			}
+			console.log('购物车没有该食堂数据,直接将该食堂/该档口/该商品追加进去')
+			state.store_userGoodsCarDatas.push(canteenDatas)
+			console.log('此时用户购物车数据↓')
+			console.log(state.store_userGoodsCarDatas)
+		}
+		
+		
+		
+	} else {
+		// 如果整个购物车都没有内容,那么直接追加食堂数据、档口数据、食品数据
+		// 如果没有该食堂数据,那么直接追加食堂数据、档口数据、食品数据
+		// 直接追加数据
+		let datas = {
+			canteenId,
+			stalls: [
+				{
+					stallsId: stallId,
+					goodsList: [
+						{
+							goodsId,
+							count: 1,
+							goodsInfo
+						}
+					]
+				}
+			]
+		}
+		
+		console.log('购物车没有该食堂数据,直接将该食堂/该档口/该商品追加进去')
+		state.store_userGoodsCarDatas.push(datas)
+		console.log('此时用户购物车数据↓')
+		console.log(state.store_userGoodsCarDatas)
+		
+	}
+	
+	
+	// console.log(state)
+}
+
+// 清空某个食堂下/某个档口的购物车
+export const clearUserGoodsCar = function ({commit, state}, {canteenId, stallId}) {
+	
+	// 点击加减号传过来的内容
+	console.log('食堂ID => ' + canteenId)
+	console.log('档口ID => ' + stallId)
+	// 找到该食堂,清空
+	for(let i = 0; i < state.store_userGoodsCarDatas.length; i++) {
+		if(state.store_userGoodsCarDatas[i].canteenId == canteenId) {
+			for(let j=0; j<state.store_userGoodsCarDatas[i].stalls.length; i++) {
+				if(state.store_userGoodsCarDatas[i].stalls[j].stallsId == stallId) {
+					
+					// 需要先将所有商品的数量清零,然后再清空这个档口下的商品数据
+					for(let k=0; k<state.store_userGoodsCarDatas[i].stalls[j].goodsList.length; k++) {
+						state.store_userGoodsCarDatas[i].stalls[j].goodsList[k].count = 0
+					}
+					
+					// 这里就不用在清空了,因为在别处已经做了: 如果当购物车中,这个商品数为0那么就清除购物车中这个商品的数据
+					state.store_userGoodsCarDatas[i].stalls[j].goodsList=[]
+					// state.store_userGoodsCarDatas[i].stalls[j]={}
+					return
+				}
+			}
+			return
+		}
+	}
+	
+}

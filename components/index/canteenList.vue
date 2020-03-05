@@ -3,38 +3,38 @@
 		<div class="canteen-list-title">
 			<p>附近餐厅</p>
 		</div>
-		<restaurantCard :canteenListData="canteenListData"></restaurantCard>
+		<restaurantCard :canteenListData="store_homeCanteenList"></restaurantCard>
 		<div class="tips">
 			<span>选择食堂开始点餐</span>
 			<div class="bg-line"></div>
 		</div>
-		<div class="miao">
+		<!-- <div class="miao">
 			<img src="../../common/images/layout/foooter-miao.png">
-		</div>
+		</div> -->
 	</div>
 </template>
 
 <script>
 import restaurantCard from '../layout/restaurantCard.vue'	
+// 拿到vuex中的函数
+import {mapGetters, mapMutations} from 'vuex'
 export default {
-	props: {
-		canteenListData: {
-			type: Array,
-			default() {
-				return []
-			}
-		}
-	},
 	data () {
 		return {
 			
 		}
 	},
 	methods: {
-		
+
 	},
 	components: {
 		restaurantCard
+	},
+	computed: {
+		// vuex提供的辅助函数，拿到store/getters.js向外暴露的内容；
+		...mapGetters([
+			'store_homeCanteenList' // 餐厅列表
+		])
 	}
 }
 </script>

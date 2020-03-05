@@ -42,13 +42,17 @@ export default {
 		},
 		async selectOutn () {
 			console.log('外部人员')
+			console.log(this.store_UserInfoData.userType)
 			
 			let res = await http_setUserInfoData({
-				"userType": 1
+				"userType": 1,
+				"idCard": ''
 			})
 			
 			if(res) {
 				Toast('设置成功，您的身份是：访客')
+				// 清空员工号
+				
 				// 跳转回 '我的' 页面
 				setTimeout(()=>{
 					uni.switchTab({
@@ -66,11 +70,11 @@ export default {
 			setUserIdentity: 'setUserIdentity'
 		})
 	},
-	// computed: {
-	// 	...mapGetters({
-	// 		store_userIdentity
-	// 	})
-	// }
+	computed: {
+		...mapGetters([
+			'store_UserInfoData'
+		])
+	}
 }
 </script>
 

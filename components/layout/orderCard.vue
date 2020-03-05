@@ -1,6 +1,6 @@
 <template>
-	<!-- <div class="orderCard" @click="openOrderDetail"> -->
-	<div class="orderCard">
+	<div class="orderCard" @click="openOrderDetail">
+	<!-- <div class="orderCard"> -->
 		<!-- 表头 -->
 		<div class="orderCard-head">
 			<div class="img-box">
@@ -27,7 +27,7 @@
 			<span class="meal-number" v-if="orderItemInfo.orderType===2">取餐码：{{orderItemInfo.orderType===2?orderItemInfo.getFoodNumber:''}}号</span>
 			<div class="footer-btns">
 				<div class="btn-item footer-btn-canle" v-if=" orderItemInfo.orderType===1 || orderItemInfo.orderType===2">取消订单</div>
-				<div class="btn-item footer-btn-evaluate" v-if="orderItemInfo.orderType===5">评价</div>
+				<div class="btn-item footer-btn-evaluate" v-if="orderItemInfo.orderType===5" @click="openEvaluate">评价</div>
 				<div class="btn-item footer-btn-topay" v-if=" orderItemInfo.orderType===1">去支付（还剩14分20秒）</div>
 				<div class="btn-item footer-btn-confirm" v-if="orderItemInfo.orderType===2">确认取餐</div>
 				<!-- <div class="btn-item footer-btn-refund">退款详情</div> -->
@@ -78,6 +78,18 @@ export default {
 			// 将本订单ID传过去
 			uni.navigateTo({
 				url: '../../pages/order_detail/order_detail?orderId=' + orderId,
+				complete (res) {
+					console.log(res)
+				}
+			})
+		},
+		
+		// 点击评价按钮，跳转到评价页
+		openEvaluate() {
+			let orderId = 12
+			// 将本订单ID传过去
+			uni.navigateTo({
+				url: '../../pages/order_evaluate/order_evaluate?orderId=' + orderId,
 				complete (res) {
 					console.log(res)
 				}

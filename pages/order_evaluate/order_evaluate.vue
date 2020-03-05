@@ -46,8 +46,12 @@ export default {
 	data () {
 		return {
 			ttCont: '',
-			starValue: 0
+			starValue: 0,
+			orderId: -1
 		}
+	},
+	onLoad(data) {
+		this.orderId = data.orderId
 	},
 	methods: {
 		// 点击提交按钮
@@ -62,13 +66,28 @@ export default {
 				Toast('客官，至少给一颗星吧~！')
 			} else {
 				
-				console.log('当前内容 => ' + res)
-				console.log('发送http请求')
+				console.log('内容 => ' + res)
+				console.log('订单ID => ' + this.orderId)
+				console.log('星星 => ' + this.starValue)
 				
-				// 提交成功,清空内容
-				Toast('感谢您的评价~！')
-				this.ttCont = ''
-				this.starValue = 0
+				console.log('发送成功后，重新获取该用户的订单数据')
+				console.log('发送http请求')
+				if(this.orderId!==-1) {
+					// 提交成功,清空内容
+					// Toast('评价成功')
+					this.ttCont = ''
+					this.starValue = 0
+					// 跳转
+					// uni.reLaunch({
+					// 	url: '../../pages/order_evaluate_result/order_evaluate_result',
+					// 	complete (res) {
+					// 		console.log(res)
+					// 	}
+					// })
+					
+				} else {
+					Toast('提交失败')
+				}
 			}
 		},
 		

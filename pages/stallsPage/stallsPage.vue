@@ -31,7 +31,11 @@
 			  <!-- 点餐tab -->
 			  <van-tab title="点餐" class="goods-scroll-tab">
 				  <!-- $emit传入的事件名称只能使用小写，不能使用大写的驼峰规则命名 -->
-				  <goodsScroll @showgoodsmod="showGoodsMod"></goodsScroll>
+				  <!-- 这里两种方案，因为没有了左侧的分类滚动，所以启用另一个没有左侧商品分类的滚动条 -->
+				  <!-- <goodsScroll @showgoodsmod="showGoodsMod"></goodsScroll> -->
+				  <!-- this.canteenID 餐厅id -->
+				  <!-- this.stallID 档口id -->
+				  <goodsScrollSB @showgoodsmod="showGoodsMod" :canteenID="canteenID" :stallID="stallID" :goodsList="goodsList"></goodsScrollSB>
 			  </van-tab>
 			  <!-- 评价tab -->
 			  <van-tab title="评价" class="goods-proportion-tab">
@@ -71,7 +75,8 @@
 		</div>
 		<!-- 底部，购物车bar -->
 		<div class="stall-foo">
-			<goodsCar @opengoodscar="openGoodsCar"></goodsCar>
+			<!-- 将食堂ID、档口ID、购物车总数、购物车总价 传入 -->
+			<goodsCar @opengoodscar="openGoodsCar"  :canteenID="canteenID" :stallID="stallID" :userGoodsCarTotalCount="userGoodsCarTotalCount" :userGoodsCarTotalPrice="userGoodsCarTotalPrice"></goodsCar>
 		</div>
 		<!-- // 商品详情浮层 -->
 		<!-- vant 自带的show 不是 v-show -->
@@ -86,25 +91,27 @@
 			overlay-style="background-color: rgba(0,0,0,.2);"
 			>
 			<div class='mod-cont'>
-				<div class="mod-cont-title">黄金鸡块5块装</div>
+				<div class="mod-cont-title">{{goodsInfoModData.footname}}</div>
 				<div class="mod-cont-img-box">
 					<img :src="goodsInfoModData.goodsImg">
 				</div>
 				<div class="mod-cont-test-box">
 					<div class="sale-and-rate">
-						<span class="goods-c">月售200+</span>
-						<span class="desc">好评率 80%</span>
+						<span class="goods-c">月售 {{'后端未返回字段'}}</span>
+						<span class="desc">好评率 {{'后端未返回字段'}}%</span>
 					</div>
-					<div class="goods-desc">精选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉选鸡肉烹炸，搭配调味料，口感香鲜酥脆。主要原料：黄金鸡块</div>
+					<div class="goods-desc">{{'后端未返回字段'}}</div>
 				</div>
 				<div class="mod-cont-ft-box">
 					<div class="goods-price">
-						<span class="goods-price-num">¥12</span>
-						<span class="goods-price-company">/1盒</span>
+						<span class="goods-price-num">¥{{goodsInfoModData.price}}</span>
+						<span class="goods-price-company">/{{'后端未返回字段'}}</span>
 					</div>
 					<div class="mc-add-sub-btn-box">
-						<!-- 加减号组件，需要将 商家(摊位、档口)的ID、 商品的ID传入 -->
-						<adsubSymbols></adsubSymbols>
+						<!-- 加减号组件，将食堂ID、档口ID、商品数据 -->
+						<!-- 那么这里因为渲染的原因，所以在之类加减号的时候应该把商品的个数传入， -->
+						<!-- 然后加减号组件判断是否有这个属性，如果有的话，说明是这里调用的 -->
+						<adsubSymbols :canteenID="canteenID" :stallID="stallID" :goodsInfo="goodsInfoModData" :goodsInfoModCount="goodsInfoModCount"></adsubSymbols>
 					</div>
 				</div>
 			</div>
@@ -120,32 +127,35 @@
 		  class="goodsCar-list"
 		>
 			<div class="goodsCar-list-title">
-				<div class="goodsCar-list-title-l">已选（{{store_ttt}}）</div>
+				<div class="goodsCar-list-title-l">已选（{{userGoodsCarTotalCount}}）</div>
 				<div class="goodsCar-list-title-r" @click="clearGoodsCar"><i></i>清空</div>
 			</div>
 			<!-- 商品+价格+加减号按钮 -->
-			<div class="goodsCar-list-goods-item" v-for="(item,idx) in store_ttt" :key="idx">
+			<div class="goodsCar-list-goods-item" v-for="(item,idx) in userGoodsCarDatas" :key="idx">
 				<div class="item-box">
-					<div class="goods-item-title nowrap">全家全家家全家家全家全家全家全家桶</div>
+					<div class="goods-item-title nowrap">{{item.goodsInfo.footname}}</div>
 					<div class="goods-item-price-box">
-						<div class="goods-item-price">¥ 16.8</div>
+						<div class="goods-item-price">¥ {{item.goodsInfo.price}}</div>
 						<!-- 加减号 -->
 						<div class="goods-item-add-sub-btn-box">
-							<!-- 加减号组件，需要将 商家(摊位、档口)的ID、 商品的ID传入 -->
-							<adsubSymbols></adsubSymbols>
+							<!-- 加减号组件，将食堂ID、档口ID、商品数据 -->
+							<adsubSymbols :canteenID="canteenID" :stallID="stallID" :goodsInfo="item.goodsInfo"></adsubSymbols>
 						</div>
 					</div>
 				</div>
 			</div>
 		</van-popup>
+		<van-toast id="van-toast" />
 	</div>
 </template>
 
 <script>
 // 星星组件
 import star from '@/components/layout/star.vue'	
-// 滑动列表
-import goodsScroll from '@/components/stallsPage/goodsScroll.vue'	
+// 商品滑动列表
+// 这里两种方案，因为没有了左侧的分类滚动，所以启用另一个没有左侧商品分类的滚动条
+// import goodsScroll from '@/components/stallsPage/goodsScroll.vue'	
+import goodsScrollSB from '@/components/stallsPage/goodsScrollSB.vue'	
 // 购物车bar
 import goodsCar from '@/components/stallsPage/goodscarBar.vue'	
 // 加减号组，商品详情
@@ -153,7 +163,14 @@ import adsubSymbols from '@/components/stallsPage/adsubSymbols.vue'
 // 用户评价组件
 import evaluateListItem from '@/components/stallsPage/evaluateListItem.vue'
 // 拿到vuex中的函数
-import {mapGetters, mapMutations} from 'vuex'	
+import {mapGetters, mapActions ,mapMutations} from 'vuex'	
+
+// 获取商品列表
+import {http_getGoodsList} from '@/utils/http/http_getGoodsList.js'	
+
+import Toast from '../../wxcomponents/weapp/dist/toast/toast'
+// 检测是否登录、token是否过期
+import {isLogin} from '@/utils/utils.js'
 export default {
 	data() {
 		return {
@@ -165,6 +182,8 @@ export default {
 			goodsInfoModshow: false,
 			// 被点击的卡片的传过来商品数据
 			goodsInfoModData: {},
+			// 点击卡片，传过来的商品数据，因为created的原因，所以 在浮层加减号组件中不能立刻拿到商品数量
+			goodsInfoModCount: 0,
 			// 弹出层样式
 			modelStyle: [],
 			// 遮罩层样式
@@ -173,10 +192,86 @@ export default {
 			
 			// 购物车列表的上拉浮层
 			goodsCarModShow: false,
+			
+			// 餐厅id
+			canteenID: -1,
+			
+			// 档口id
+			stallID: -1,
+			
+			// 该档口下的商品数据
+			goodsList: [],
+			
+			
+			// 该食堂下、该档口购物车是数据，而不是所有的购物车数据
+			userGoodsCarDatas: [],
+			// 单个商品数据结构
+			// {
+			// 	// 商品ID
+			// 	goodsId: 2, 
+			// 	// 商品总个数
+			// 	count: 3,
+			// 	// 商品信息(其中有商品价格)
+			// 	goodsInfo: {
+			// 		boothNum: "2",
+			// 		canteenNum: "1",
+			// 		createTime: '',
+			// 		footname: "麻辣香锅2222",
+			// 		id: "2",
+			// 		price: "15.56",
+			// 		shelve: "1",
+			// 		stock: "99"
+			// 	} 
+			// }
+			
+			// 记录 计算出的购物车总数
+			userGoodsCarTotalCount: 0,
+			
+			// 记录 计算出的购物车商品总价
+			userGoodsCarTotalPrice: 0,
+			
 		}
 	},
 	onLoad(e) {
+		console.log('===========================')
 		console.log(e)
+		this.canteenID = e.canteenID || -1
+		this.stallID = e.stallID || -1
+	},
+	async onShow() {
+		
+		// 检测用户登录
+		// 登录后才能点餐
+		
+		
+		let islogin = await isLogin()
+		if(!islogin) {
+			// 用户未登录，跳转到登录页
+			uni.navigateTo({
+				// 跳转路径
+				// 摊位列表页
+				url: '../../pages/login/login'
+			})
+			return
+		}
+		
+		// 获取档口ID
+		// 如果档口id不等于-1,那么请求数据
+		this.getGoodsData()
+		
+		
+		
+		// 再初始化的时候，就调用一次计算该食堂下、该商家购物车总数的方法
+		// 计算购物车总数
+		// 初始化还要稍等VUEX的数据，所以等到100毫秒
+		setTimeout(()=>{
+			// 计算总数
+			this.computeCanteenStallGoodsCarCount(this.store_userGoodsCarDatas)
+			// 计算总价格
+			this.computeCanteenStallGoodsCarTotalPrice(this.store_userGoodsCarDatas)
+			// 获取所有购物车中  该食堂下的该档口的 购物车数据
+			this.computeCanteenStallGoodsCarDatas(this.store_userGoodsCarDatas)
+		},100)
 	},
 	methods: {
 		tabOnChange(e) {
@@ -184,10 +279,11 @@ export default {
 		},
 		
 		// 点击商品卡片，该商品将商品详细数据传给滚动栏，滚动栏拿到再传给本组件，也就是档口详情页
-		showGoodsMod(CurrentClickGoodsInfo) {
+		showGoodsMod(CurrentClickGoodsInfo, goodsCount) {
 			console.log('被点击的商品的数据，做浮层=↓')
 			console.log(CurrentClickGoodsInfo)
 			this.goodsInfoModData = CurrentClickGoodsInfo
+			this.goodsInfoModCount = goodsCount
 			// 展示卡片
 			this.goodsInfoModshow = true
 		},
@@ -197,16 +293,10 @@ export default {
 			console.log('卡片关闭啦')
 		},
 		
-		
-		
-		
 		// 打开或关闭 购物车上拉浮层，这个函数由点击 子组件购物车bar 触发，传回来
 		openGoodsCar() {
-			
 			// 这里看看商品数是否大于0
-			if(this.store_ttt>0) {
-				this.goodsCarModShow===true?this.goodsCarModShow=false:this.goodsCarModShow=true
-			}
+			this.goodsCarModShow===true?this.goodsCarModShow=false:this.goodsCarModShow=true
 		},
 		// 关闭购物车上拉浮层的回调
 		goodsCarModClose() {
@@ -224,18 +314,150 @@ export default {
 				clearTimeout(clt)
 			}
 			let clt = setTimeout(()=>{
-				this.testClear()
+				let clobj = {
+					canteenId: this.canteenID,
+					stallId: this.stallID
+				}
+				this.clearUserGoodsCar(clobj)
+				
 			},100)
 			
 			
 		},
 		
+		async getGoodsData() {
+			if(this.canteenID!==-1) {
+				if(this.stallID!==-1) {
+					console.log('获取档口的食品列表')
+					// 返回值规范：返回档口下食品数据 - 无问题， 
+					// 			  返回1 - 数据获取失败，
+					//            返回2 - 本地store数据结构循环有问题
+					let res = await http_getGoodsList(this.canteenID, this.stallID)
+					
+					if(res===2) {
+						// 数据有问题跳转回首页
+						uni.switchTab({
+							url: '../../pages/index/index',
+							complete (res) {
+								console.log(res)
+							}
+						})
+					} else if(res===1) {
+						Toast('获取数据失败，请返回首页刷新重试')
+					}else {
+						// 到这里了,那么说明返回的就是该档口下的商品数据
+						this.goodsList = res
+					}
+					
+				} else {
+					// 数据有问题跳转回首页
+					uni.switchTab({
+						url: '../../pages/index/index',
+						complete (res) {
+							console.log(res)
+						}
+					})
+				}
+			} else {
+				// 数据有问题跳转回首页
+				uni.switchTab({
+					url: '../../pages/index/index',
+					complete (res) {
+						console.log(res)
+					}
+				})
+			}
+		},
+		// 计算购物车  总数
+		computeCanteenStallGoodsCarCount(newVal){
+			this.userGoodsCarTotalCount = 0
+			if(newVal.length>0) {
+				for (let i = 0; i < newVal.length; i++) {
+					// 购物车有食堂，往下找到该食堂
+					if(newVal[i].canteenId == this.canteenID) {
+						// 找到该食堂了，往下继续循环找到该档口
+						for(let j = 0; j< newVal[i].stalls.length; j++) {
+							if(newVal[i].stalls[j].stallsId == this.stallID) {
+								// 找到该档口了,那么继续往下该商品
+								for(let k=0; k<newVal[i].stalls[j].goodsList.length; k++) {
+										
+									this.userGoodsCarTotalCount += newVal[i].stalls[j].goodsList[k].count
+									
+								}
+							}
+						}
+					}
+				}
+				console.log('该食堂下、该档口的购物车  总数')
+				console.log(this.userGoodsCarTotalCount)
+			}
+		},
+		
+		// 计算购物车  总价格
+		computeCanteenStallGoodsCarTotalPrice(newVal){
+			this.userGoodsCarTotalPrice = 0
+			if(newVal.length>0) {
+				for (let i = 0; i < newVal.length; i++) {
+					// 购物车有食堂，往下找到该食堂
+					if(newVal[i].canteenId == this.canteenID) {
+						// 找到该食堂了，往下继续循环找到该档口
+						for(let j = 0; j< newVal[i].stalls.length; j++) {
+							if(newVal[i].stalls[j].stallsId == this.stallID) {
+								// 找到该档口了,那么继续往下该商品
+								for(let k=0; k<newVal[i].stalls[j].goodsList.length; k++) {
+									
+									
+									this.userGoodsCarTotalPrice += (newVal[i].stalls[j].goodsList[k].count * Number(newVal[i].stalls[j].goodsList[k].goodsInfo.price))
+									// 只保留两位小数.toFixed(2) toFixex返回是字符串，所以转一下数字
+									this.userGoodsCarTotalPrice = Number(this.userGoodsCarTotalPrice.toFixed(2))
+								}
+							}
+						}
+					}
+				}
+				console.log('该食堂下、该档口的购物车  总价格')
+				console.log(this.userGoodsCarTotalPrice)
+			}
+		},
+		
+		// 获取所有购物车数据中，该食堂下，该档口的购物车数据
+		computeCanteenStallGoodsCarDatas(newVal) {
+			this.userGoodsCarDatas = []
+			if(newVal.length>0) {
+				for (let i = 0; i < newVal.length; i++) {
+					// 购物车有食堂，往下找到该食堂
+					if(newVal[i].canteenId == this.canteenID) {
+						// 找到该食堂了，往下继续循环找到该档口
+						for(let j = 0; j< newVal[i].stalls.length; j++) {
+							if(newVal[i].stalls[j].stallsId == this.stallID) {
+								// 找到该档口了,那么继续往下该商品
+								for(let k=0; k<newVal[i].stalls[j].goodsList.length; k++) {
+									
+									// 不获取商品数为0的
+									if(newVal[i].stalls[j].goodsList[k].count>0) {
+										this.userGoodsCarDatas.push(newVal[i].stalls[j].goodsList[k])
+									}
+									
+								}
+							}
+						}
+					}
+				}
+				console.log('该食堂下、该档口的购物车 数据')
+				console.log(this.userGoodsCarDatas)
+			}
+		},
+		
 		...mapMutations({
-			testClear: 'testClear'
-		})
+		}),
+		...mapActions([
+			'clearUserGoodsCar'
+		])
+		
 	},
 	components: {
-		goodsScroll,
+		// goodsScroll,
+		goodsScrollSB,
 		star,
 		goodsCar,
 		adsubSymbols,
@@ -243,16 +465,31 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'store_ttt' // 模拟商品数
+			'store_ttt', // 模拟商品数
+			'store_userGoodsCarDatas'
 		])
 	},
 	watch: {
 		// 监听购物车商品个数,如果<=0那么关闭购物车浮层
-		store_ttt(newVal) {
+		userGoodsCarTotalCount(newVal) {
 			if(newVal<=0) {
 				this.goodsCarModShow = false
 			}
-		}
+		},
+		
+		// watch监听vuex数据需要这样
+		'store_userGoodsCarDatas':{
+			handler(newVal) {
+				// 计算总数
+				this.computeCanteenStallGoodsCarCount(newVal)
+				// 计算总价格
+				this.computeCanteenStallGoodsCarTotalPrice(newVal)
+				// 获取所有购物车中  该食堂下的该档口的 购物车数据
+				this.computeCanteenStallGoodsCarDatas(newVal)
+			},
+			deep: true
+		},
+		
 	}
 }	
 </script>

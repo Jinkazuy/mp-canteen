@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "人脸识别",
+  "usingComponents": {
+    "van-toast": "/wxcomponents/weapp/dist/toast/index",
+    "van-button": "/wxcomponents/weapp/dist/button/index",
+    "kps-image-cutter": "/components/ksp-image-cutter/ksp-image-cutter"
+  }
+}

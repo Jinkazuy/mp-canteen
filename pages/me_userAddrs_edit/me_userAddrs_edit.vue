@@ -17,6 +17,8 @@
 // 拿到vuex中的函数
 import {mapGetters, mapMutations} from 'vuex'
 import Toast from '../../wxcomponents/weapp/dist/toast/toast';
+// 设置用户信息
+import {http_setUserInfoData} from '../../utils/http/http_setUserInfoData.js'
 export default {
 	data() {
 		return {
@@ -36,7 +38,7 @@ export default {
 	},
 	methods: {
 		// 点击提交按钮
-		subAddrs() {
+		async subAddrs() {
 			let res = this.addrs.trim()
 			// 判断输入框内容长度
 			if(!res.length) {
@@ -45,12 +47,22 @@ export default {
 			} else if(this.addrs!==this.store_UserInfoData.address){ 
 				// 判断是否等于原来的内容
 				console.log('当前内容 => ' + res)
-				console.log('发送http请求')
+				let httpRes = await http_setUserInfoData({"address": res})
 				
-				// 提交成功,清空内容
-				Toast('已保存')
-				// 此时发送请求，如果返回成功的话，那么在http请求中手动设置本地store，那么这里就能获取到最新的地址的值
-				this.addrs = this.store_UserInfoData.address
+				if(httpRes) {
+					// 提交成功
+					Toast('已保存')
+					// 此时发送请求，如果返回成功的话，那么在http请求中手动设置本地store，那么这里就能获取到最新的地址的值
+					this.addrs = this.store_UserInfoData.address
+					setTimeout(()=>{
+						uni.navigateBack({
+						    delta: 2
+						})
+					},1000)
+				} else {
+					Toast('修改失败')
+				}
+				
 			} else {
 				Toast('地址未修改')
 			}

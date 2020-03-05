@@ -2,9 +2,11 @@
 	<div class="user-addrs">
 		<div class="user-addrs-tit">我的地址</div>
 		<div class="user-addrs-info">
-			<span class="open-setting" @click="openSettingPage">{{
-				locationFlag? (locationInfo!==''?locationInfo:'获取位置失败，点击开启定位') :'获取位置失败，点击开启定位'
+			<!-- <span class="open-setting" @click="openSettingPage">{{
+				locationFlag? (locationInfo!==''?locationInfo.latitude+'-'+locationInfo.longitude:'获取位置失败，点击开启定位') :'获取位置失败，点击开启定位'
 			}}
+			</span> -->
+			<span class="open-setting" @click="openSettingPage">{{store_UserInfoData.address!==''?store_UserInfoData.address:'暂无地址'}}
 			</span>
 			<i @click="openEditAddrsPage"></i>
 		</div>

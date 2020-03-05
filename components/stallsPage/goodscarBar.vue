@@ -4,24 +4,56 @@
 			<div class="car-icon-wrapper">
 				<!-- 当该商户下的购物车个数大于1，那么就改变购物车icon样式 -->
 				<!-- <div :class="{store_ttt?'car-icon-nor':'car-icon-cat'}"> -->
-				<div :class="[{'car-icon-nor':store_ttt<=0}, {'car-icon-act':store_ttt>0}]">
+				<div :class="[{'car-icon-nor':userGoodsCarTotalCount<=0}, {'car-icon-act':userGoodsCarTotalCount>0}]">
 					<i></i>
 				</div>
-				<div class="arr-num" :animation="redDit" v-if="store_ttt>0">{{store_ttt}}</div>
+				<div class="arr-num" :animation="redDit" v-if="userGoodsCarTotalCount>0">{{userGoodsCarTotalCount}}</div>
 			</div>
-			<div class="payment-amount">￥56元</div>
+			<div class="payment-amount">￥{{userGoodsCarTotalPrice}}元</div>
 		</div>
 		<div 
-			:class="[{'payment-btn-nor':store_ttt<=0}, {'payment-btn-act':store_ttt>0}]"
+			:class="[{'payment-btn-nor':userGoodsCarTotalCount<=0}, {'payment-btn-act':userGoodsCarTotalCount>0}]"
 			@click="toSettlementPage"
-			>{{store_ttt>0?'去结算':'请选餐'}}</div>
+			>{{userGoodsCarTotalCount>0?'去结算':'请选餐'}}</div>
 	</div>
 </template>
 
 <script>
 // 拿到vuex中的函数
-import {mapGetters, mapMutations} from 'vuex'	
+import {mapGetters, mapMutations, mapActions} from 'vuex'	
+// 判断用户是否登录
+import {isLogin} from '@/utils/utils.js'
 export default {
+	props: {
+		// 食堂ID
+		canteenID: {
+			type: Number,
+			default() {
+				return -1
+			}
+		},
+		// 档口ID
+		stallID: {
+			type: Number,
+			default() {
+				return -1
+			}
+		},
+		// 购物车  商品总数
+		userGoodsCarTotalCount: {
+			type: Number,
+			default() {
+				return -1
+			}
+		},
+		// 购物车  商品总价格
+		userGoodsCarTotalPrice: {
+			type: Number,
+			default() {
+				return -1
+			}
+		},
+	},
 	data() {
 		return {
 			
@@ -33,39 +65,45 @@ export default {
 			animationB: {},
 			
 			// 购物车浮层
-			carPopShow: true
+			carPopShow: true,
+			
+			// 该食堂下、该档口的购物车中的数据，用于转移到订单
+			// thatGoodsCardDatas: null
+			
 		}
 	},
+	
 	methods: {
 		openCar() {
-			// 点击购物车,调用父级传入的函数,由此触发父级函数,打开购物车列表浮层
-			this.$emit('opengoodscar')
+			if(this.userGoodsCarTotalCount>0) {
+				// 点击购物车,调用父级传入的函数,由此触发父级函数,打开购物车列表浮层
+				this.$emit('opengoodscar')
+			}
 		},
 		
 		// 去支付
 		toSettlementPage() {
 			
-			// 判断当前餐厅下的 当前档口下的购物车个数是否大于0
-			if(this.store_ttt>0) {
-				
-				// 将该 前餐厅下的 当前档口下的购物车 添加到 订单数据中，
-				// 并清空该 前餐厅下的 当前档口下的购物车内容
-				
-				// 跳转到结算页
-				// 结算页的内容是某个餐厅下的某个档口的内容
-				// 所以这里将 食堂ID 和 档口ID 传入
+			if(this.userGoodsCarTotalCount>0) {
+				// 已登录，跳转到下单页，并且把食堂ID、名称，档口ID传入、名称
+				// 跳转到登录页
 				uni.navigateTo({
 					// 跳转路径
 					// 摊位列表页
-					url: '../../pages/confirmationOrder/confirmationOrder?canteenId=' + '12' +'&stallsId='+ '66'
-				});
+					url: '../../pages/confirmationOrder/confirmationOrder?canteenID=' +this.canteenID+ '&stallID=' +this.stallID
+				})
 			}
+			
 		},
 		
+		
 		// 当该购物车中，该商户下的内容发生变化时，那么就让红色小点显示
-		...mapMutations({
-			
-		})
+		...mapMutations([
+			'setDidNotPayOrderData'
+		]),
+		...mapActions([
+			'clearUserGoodsCar' // 清除本地的该食堂下档口的购物车
+		])
 	},
 	mounted() {
 		// 小红点动画
@@ -90,7 +128,9 @@ export default {
 	computed: {
 		...mapGetters([
 			'store_ttt',
-			'store_ballXY'
+			'store_ballXY',
+			'store_userGoodsCarDatas',
+			'store_UserInfoData'
 		])
 	},
 	watch: {
@@ -109,7 +149,7 @@ export default {
 					this.redDit = this.animationA.export()
 				},210)
 			} 
-		}
+		},
 	}
 }
 </script>

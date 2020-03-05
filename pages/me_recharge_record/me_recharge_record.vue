@@ -20,6 +20,9 @@ export default {
 			recordList: [1,2,3]
 		}
 	},
+	onShow() {
+		console.log('获取用户充值记录')
+	},
 	methods: {
 		
 	}

@@ -36,12 +36,15 @@
 export default {
 	data () {
 		return {
-			money: ''
+			money: '',
+			// 用于余额
+			userBalance: 168.05
 		}
 	},
 	methods: {
 		openProcess() {
-			console.log(1)
+			console.log('提交')
+			console.log('当前金额=> ' + this.money)
 			
 			// 发送请求,返回结算成功跳转到提现成功页
 			// uni.navigateTo({
@@ -56,7 +59,6 @@ export default {
 			let newValue = e.detail.value
 			// console.log(newValue)
 			// 不能让金额大于用户余额
-			let userBalance = 168.05
 			
 			// 若等于
 			if(newValue == '00') {
@@ -80,13 +82,13 @@ export default {
 			}
 			
 			
-			if(Number(newValue)>Number(userBalance)) {
+			if(Number(newValue)>Number(this.userBalance)) {
 				console.log('金额大于了')
 				// 这里v-model有个BUG，需要设置延迟才行
 				if(st) {
 					clearTimeout(st)
 				}
-				let st = setTimeout(() => { this.money = userBalance }, 5)
+				let st = setTimeout(() => { this.money = this.userBalance }, 5)
 				console.log(this.money)
 			}
 			
@@ -132,13 +134,28 @@ export default {
 			// 如果大于两位小数，那么就保留两位小数
 			let floatNum = (String(num).split(".")[1].length)
 			if(floatNum>2) {
+				let result = 0
 				console.log('小数点后，保留两位')
-				let result = Number(num).toFixed(2);
-				
+				result = Number(num).toFixed(2);
+				this.money = 0
 				if(st) {
 					clearTimeout(st)
 				}
-				let st = setTimeout(() => { this.money = result }, 0)
+				let st = setTimeout(() => { 
+					this.money = result
+					
+					// 然后再次判断是否大于用户余额
+					if(Number(this.money)>Number(this.userBalance)) {
+						console.log('金额大于了')
+						// 这里v-model有个BUG，需要设置延迟才行
+						if(stdd) {
+							clearTimeout(stdd)
+						}
+						let stdd = setTimeout(() => { this.money = this.userBalance }, 25)
+						console.log(this.money)
+					}
+					
+				}, 20)
 			}
 		}
 	}

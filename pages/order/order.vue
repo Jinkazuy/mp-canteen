@@ -138,8 +138,8 @@ export default {
 		}
 	},
 	onShow() {
-		// this.watchIsLogin = isLogin()
-		this.watchIsLogin = true
+		this.watchIsLogin = isLogin()
+		// this.watchIsLogin = true
 		// 获取用户订单数据
 		this.getOrderData()
 	},

@@ -63,7 +63,8 @@ export default {
 			uni.navigateTo({
 				// 跳转路径
 				// 摊位列表页
-				url: '../../pages/stallsPage/stallsPage?id='+id
+				// url: '../../pages/stallsPage/stallsPage?canteenID='+id+'&stallID'+id
+				url: '../../pages/stallsPage/stallsPage?canteenID='+'1'+'&stallID='+'2'
 			});
 		}
 	},

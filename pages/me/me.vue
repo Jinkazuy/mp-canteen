@@ -18,14 +18,14 @@
 		<div class="functional-wrapper">
 			<div class="functional-box">
 				<ul>
-					<li>
+					<li @click="openBalance">
 						<div class="functional-img-balance"></div>
 						<div class="functional-box-text-group">
 							<p :class="{'text-num':!watchIsLogin}">余额</p>
 							<p class="text-num" v-if="watchIsLogin">200.00元</p>
 						</div>
 					</li>
-					<li>
+					<li @click="openRecharge">
 						<div class="functional-img-recharge"></div>
 						<div class="functional-box-text-group">
 							<p class="text-num">充值</p>
@@ -35,7 +35,7 @@
 						<div class="functional-img-evaluate"></div>
 						<div class="functional-box-text-group">
 							<p :class="{'text-num':!watchIsLogin}">我的评论</p>
-							<p class="text-num" v-if="watchIsLogin">12元</p>
+							<p class="text-num" v-if="watchIsLogin">12</p>
 						</div>
 					</li>
 				</ul>
@@ -54,7 +54,7 @@
 			<li @click="toPage(2)">
 				<div class="text-group">
 					<i></i>
-					<span>我的地址</span>
+					<span>人脸识别支付</span>
 				</div>
 				<div class="arrow-wrapper">
 					<i></i>
@@ -63,13 +63,22 @@
 			<li @click="toPage(3)">
 				<div class="text-group">
 					<i></i>
-					<span>意见反馈</span>
+					<span>我的地址</span>
 				</div>
 				<div class="arrow-wrapper">
 					<i></i>
 				</div>
 			</li>
 			<li @click="toPage(4)">
+				<div class="text-group">
+					<i></i>
+					<span>意见反馈</span>
+				</div>
+				<div class="arrow-wrapper">
+					<i></i>
+				</div>
+			</li>
+			<li @click="toPage(5)">
 				<div class="text-group">
 					<i></i>
 					<span>修改手机号</span>
@@ -84,6 +93,7 @@
 		<div class="log-out" @click="logOut" v-if="watchIsLogin">退出登录</div>
 		<div class="log-in" @click="openLogin" v-if="!watchIsLogin">登录</div>
 		<van-toast id="van-toast" />
+		<van-dialog id="van-dialog" />
 	</div>
 </template>
 
@@ -95,6 +105,7 @@ import {isLogin} from '@/utils/utils.js'
 // toast组件，拿到的不是组件，是方法；
 // 如此这般：Toast('我是提示文案，建议不超过十五字~');
 import Toast from '../../wxcomponents/weapp/dist/toast/toast'
+import Dialog from '../../wxcomponents/weapp/dist/dialog/dialog'
 export default {
 	data () {
 		return {
@@ -107,45 +118,55 @@ export default {
 	},
 	methods: {
 		logOut() {
-			console.log('logOut')
-			this.setToken('')
-			this.setTokenExpiration('')
-			this.setUserInfo({
-				avatarUrl: null,
-				city: null,
-				country: null,
-				gender: null,
-				language: null,
-				nickName: null,
-				province: null
-			})
-			this.setUserInfoData({
-				address: null, // 用户地址
-				avatarUrl: null, // 头像imgURL
-				birth: null, // 生日
-				city: null, // 城市
-				country: null, // 国家
-				createTime: null, // 注册时间
-				dataSort: null, // 数据排序
-				email: null, // 邮箱
-				gender: null, // 性别 1 | 0
-				id: null, // 用户ID
-				idCard: null, // 当用户选择内部员工时必填
-				isDelete: null, // 逻辑删除: 0:未删除 1:已删除
-				language: null, // 语言
-				mobile: null, // 手机号
-				nickName: null, // 昵称
-				openId: null, // string
-				passwd: null, // 登录密码
-				province: null, // 省份
-				sessionKey: null, // 
-				status: null, // 数据状态 0:正常  1:锁定
-				unionId: null, // 
-				updateTime: null, // 更新时间: 2020-11-11 00:00:00
-				userType: null, // 用户类型 0:内部 1:外部 当外部用户时, 不需要绑定员工号
-			})
-			this.watchIsLogin = false
-			Toast('已退出登录')
+			Dialog.confirm({
+			  title: '确认退出登录',
+			  message: '退出登录后您将无法使用此账号登录智慧食堂小程序'
+			}).then(() => {
+			  // on confirm
+			  console.log('logOut')
+			  this.setToken('')
+			  this.setTokenExpiration('')
+			  this.setUserInfo({
+			  	avatarUrl: null,
+			  	city: null,
+			  	country: null,
+			  	gender: null,
+			  	language: null,
+			  	nickName: null,
+			  	province: null
+			  })
+			  this.setUserInfoData({
+			  	address: null, // 用户地址
+			  	avatarUrl: null, // 头像imgURL
+			  	birth: null, // 生日
+			  	city: null, // 城市
+			  	country: null, // 国家
+			  	createTime: null, // 注册时间
+			  	dataSort: null, // 数据排序
+			  	email: null, // 邮箱
+			  	gender: null, // 性别 1 | 0
+			  	id: null, // 用户ID
+			  	idCard: null, // 当用户选择内部员工时必填
+			  	isDelete: null, // 逻辑删除: 0:未删除 1:已删除
+			  	language: null, // 语言
+			  	mobile: null, // 手机号
+			  	nickName: null, // 昵称
+			  	openId: null, // string
+			  	passwd: null, // 登录密码
+			  	province: null, // 省份
+			  	sessionKey: null, // 
+			  	status: null, // 数据状态 0:正常  1:锁定
+			  	unionId: null, // 
+			  	updateTime: null, // 更新时间: 2020-11-11 00:00:00
+			  	userType: null, // 用户类型 0:内部 1:外部 当外部用户时, 不需要绑定员工号
+			  })
+			  this.watchIsLogin = false
+			  Toast('已退出登录')
+			}).catch(() => {
+			  // on cancel
+			});
+			
+			
 			
 			// 退出登录后，如果需要跳转到登录页，开启下方注释即可
 			// uni.navigateTo({
@@ -180,14 +201,17 @@ export default {
 						this.openPage('me_userInfo');
 						break;
 					case 2:
-						this.openPage('me_userAddrs');
+						this.openPage('me_faceUpLoad');
 						break;
 					case 3:
-						this.openPage('me_feedback'); 
+						this.openPage('me_userAddrs');
 						break;
 					case 4:
+						this.openPage('me_feedback'); 
+						break;
+					case 5:
 						this.openPage('me_editUserPhone'); 
-						break;			
+						break;
 				}
 				
 			} else {
@@ -202,6 +226,36 @@ export default {
 					console.log(res)
 				}
 			})
+		},
+		
+		// 余额
+		openBalance() {
+			if(this.watchIsLogin) {
+				uni.navigateTo({
+					url: '../../pages/me_balance/me_balance',
+					complete (res) {
+						console.log(res)
+					}
+				})
+			} else {
+				Toast('请您先登录')
+				console.log('用户未登录')
+			}
+			
+		},
+		// 充值
+		openRecharge() {
+			if(this.watchIsLogin) {
+				uni.navigateTo({
+					url: '../../pages/me_recharge/me_recharge',
+					complete (res) {
+						console.log(res)
+					}
+				})
+			} else {
+				Toast('请您先登录')
+				console.log('用户未登录')
+			}
 		},
 		
 		...mapMutations({
@@ -463,7 +517,7 @@ page {
 		li:nth-of-type(2) {
 			.text-group{
 				i {
-					background: url('../../common/images/me/wodedizhi.png') no-repeat;
+					background: url('../../common/images/me/face.png') no-repeat;
 					background-size: 100%;	
 				}
 			}
@@ -471,12 +525,20 @@ page {
 		li:nth-of-type(3) {
 			.text-group{
 				i {
-					background: url('../../common/images/me/yijianfankui@2x.png') no-repeat;
+					background: url('../../common/images/me/wodedizhi.png') no-repeat;
 					background-size: 100%;	
 				}
 			}
 		}
 		li:nth-of-type(4) {
+			.text-group{
+				i {
+					background: url('../../common/images/me/yijianfankui@2x.png') no-repeat;
+					background-size: 100%;	
+				}
+			}
+		}
+		li:nth-of-type(5) {
 			.text-group{
 				i {
 					background: url('../../common/images/me/xiugaishoujihao@2x.png') no-repeat;
@@ -502,6 +564,16 @@ page {
 	}
 	.log-out {
 		color: #F98166;
+	}
+	
+	
+	// 退出弹窗样式重置
+	.dialog-index--van-dialog {
+		border-radius: 10rpx !important;
+		.van-dialog__header {
+			color: #333 !important;
+			font-weight: 700 !important;
+		}
 	}
 }	
 </style>

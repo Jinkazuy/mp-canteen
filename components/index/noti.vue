@@ -11,7 +11,7 @@
 					circular="true">
 					<block v-for="(item, index) in notiInfo" :key="index">
 						<swiper-item>
-							<view class="swiper-item" @click="getNotiInfo(item.path)">{{ item.info }}</view>
+							<view class="swiper-item" @click="getNotiInfo(item.path)">{{ item.content }}</view>
 						</swiper-item>
 					</block>
 				</swiper>
@@ -21,6 +21,22 @@
 </template>
 
 <script>
+	// cancelTime: null
+	// content: "第一食堂今天免费"
+	// createTime: "2020-02-12 13:36:25"
+	// createUser: 1
+	// createUserName: null
+	// dataSort: 2
+	// id: 1
+	// ifCancel: 0
+	// isDelete: 0
+	// priority: 5
+	// publishTime: "2020-02-17 11:17:47"
+	// publishUser: 1
+	// publishUserName: null
+	// status: 1
+	// title: "第一食堂"
+	// updateTime: "2020-02-17 11:17:47"
 export default {
 	props: {
 		notiInfo: {

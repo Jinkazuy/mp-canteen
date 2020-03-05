@@ -70,6 +70,7 @@ export const http_login_setToken = function(code, encryptedData, iv) {
 				// 默认是7天
 				let expiration = new Date().getTime() + (res.data.expire * 1000)
 				console.log('=====token过期时间↓=========')
+				console.log(res.data.token)
 				store.commit('setTokenExpiration', expiration)
 				console.log('当前时间 => ' + formatDate(new Date(new Date().getTime())))
 				console.log('登陆(token)过期时间 => ' + formatDate(new Date(store.getters.store_tokenExpiration)))
@@ -79,12 +80,14 @@ export const http_login_setToken = function(code, encryptedData, iv) {
 				resolve(888)
 			} else {
 				// 其他错误
+				resolve('登录失败信息↓')
+				resolve(res)
 				resolve(false)
 			}
 		
 		}).catch(error => {
-			resolve(false)
 			console.log(error)
+			resolve(false)
 		}).finally(() => {})
 	})
 	

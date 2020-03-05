@@ -1,0 +1,30 @@
+.goods-scroll-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 80rpx;
+}
+.goods-scroll-wrapper .goods-scroll-right {
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.goods-scroll-wrapper .goods-scroll-right .goods-wrappers .lines {
+  width: 90%;
+  margin: 0 auto;
+  height: 1rpx;
+  background-color: #eee;
+}
+.goods-scroll-wrapper .goods-scroll-right .no-more {
+  width: 100%;
+  height: 80rpx;
+}
+

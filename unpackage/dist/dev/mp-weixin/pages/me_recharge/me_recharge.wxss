@@ -57,6 +57,11 @@
 .me-recharge .me-recharge-sel-box .sel-btn-wra-t .btn-wra-o-l {
   margin-right: 60rpx;
 }
+.me-recharge .me-recharge-sel-box .sel-btn-wra-o .act,
+.me-recharge .me-recharge-sel-box .sel-btn-wra-t .act {
+  color: #0177bf;
+  border-color: #0177bf;
+}
 .me-recharge .me-recharge-sel-box .sel-btn-wra-o {
   margin-bottom: 40rpx;
 }
@@ -105,5 +110,8 @@
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAbCAYAAACjkdXHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyNzFBMTM4RDREODAxMUVBQThFMEQxQjdDRkZFMTJBMSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyNzFBMTM4RTREODAxMUVBQThFMEQxQjdDRkZFMTJBMSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjI3MUExMzhCNEQ4MDExRUFBOEUwRDFCN0NGRkUxMkExIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjI3MUExMzhDNEQ4MDExRUFBOEUwRDFCN0NGRkUxMkExIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+C7dNoAAAAOZJREFUeNpiOHfu3CIg/g3EzQwkAiYgjgRiFiCuARrQQarmNiR+OdCAaUDMSIxmsCKojeVI4jOAOMvIyOg/Qc3kGoDiPFINwPAbKQYwoQsAFVUAqSYkoQwgxhqIOEMVqBhkSDs+F+CNEkIGEIxPfAYQlRiwGDAfiFMZiU2KWAyYxUhKWgYasANIuUO5f5lItNkdSWgBE5lOXgbE6YxkaowDhjZ+Z2PRuBCmEWvyJBC/iTCNOBMJMUkTV64iSiOGs4EaG4jVSJ2ShNwyjAmosZEcjTA/V5OjEaYZlGL+AHEvKRpBACDAAByVlPawGr/VAAAAAElFTkSuQmCC) no-repeat;
   background-position: center;
   background-size: 100%;
+}
+.me-recharge .van-picker {
+  background-color: #fff !important;
 }
 

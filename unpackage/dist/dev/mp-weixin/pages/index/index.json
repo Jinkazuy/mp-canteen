@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
   "usingComponents": {
+    "van-toast": "/wxcomponents/weapp/dist/toast/index",
     "search-bar": "/components/index/searchBar",
     "special-banner": "/components/index/specialBanner",
     "noti": "/components/index/noti",

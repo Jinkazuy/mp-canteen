@@ -4,11 +4,12 @@
 			<div class="pm-type-sel">
 				<p class="tt-tips">请选择问题类型</p>
 				<span 
-					v-for="(item,index) in pmTyep" 
+					v-for="(item,index) in pmType" 
 					:key="index"
-					@click="pmTypeSel(index)"
-					:class="['pm-type-item', {'pm-type-item-act':index===pmTyepCut}]" 
-					>使用体验
+					@click="pmTypeSel(index,item)"
+					:class="['pm-type-item', {'pm-type-item-act':index===pmTypeCut}]" 
+					>
+					{{item.msgContentLabel}}
 				</span>
 			</div>
 			<div class="tt-area">
@@ -37,31 +38,33 @@
 </template>
 
 <script>
-// toast组件，拿到的不是组件，是方法；
-// 如此这般：Toast('我是提示文案，建议不超过十五字~');
+
 import Toast from '../../wxcomponents/weapp/dist/toast/toast'
+
+// 获取留言问题分类标签
+import {http_getFeedbackTips} from '../../utils/http/http_getFeedbackTips.js'
+// 发送留言
+import {http_putFeedback} from '../../utils/http/http_putFeedback.js'
 export default {
 	data() {
 		return {
 			ttCont: '',
 			// 问题类型
-			pmTyep: [
-				'使用体验',
-				'使用体验',
-				'使用体验',
-				'使用体验',
-				'使用体验'
-			],
-			pmTyepCut: 0,
+			pmType: [],
+			pmTypeCut: 0,
 			
 			// 小彩蛋次数
 			cai: 0,
 			caiflag: false
 		}
 	},
+	async onShow() {
+		// 获取留言问题分类标签
+		this.pmType = await http_getFeedbackTips()
+	},
 	methods: {
 		// 点击提交按钮
-		subFeedBack() {
+		async subFeedBack() {
 			let res = this.ttCont.trim()
 			console.log(res.length)
 			// 判断输入框内容
@@ -78,19 +81,30 @@ export default {
 					},3000)
 				}
 			} else {
-				console.log('当前问题类型 => ' + this.pmTyep[this.pmTyepCut])
-				console.log('当前内容 => ' + res)
-				console.log('发送http请求')
 				
-				// 提交成功,清空内容
-				Toast('感谢您的反馈~！')
-				this.ttCont = ''
-				this.pmTyepCut = 0
+				
+				let msgContent = res
+				let msgTitle = this.pmType[this.pmTypeCut].msgTitleValue
+				let msgTitleName = this.pmType[this.pmTypeCut].msgContentLabel
+				
+				console.log(msgContent, msgTitle, msgTitleName)
+				
+				let putRes = await http_putFeedback(msgContent, msgTitle, msgTitleName)
+				
+				if(putRes) {
+					// 提交成功,清空内容
+					Toast('感谢您的反馈~！')
+					this.ttCont = ''
+					this.pmTypeCut = 0
+				} else {
+					// 提交成功,清空内容
+					Toast('提交失败')
+				}
 			}
 		},
 		// 选择问题类型
 		pmTypeSel(idx) {
-			this.pmTyepCut = idx
+			this.pmTypeCut = idx
 		},
 		
 		// 菜单关闭

@@ -25,13 +25,12 @@ export default {
 	},
 	methods: {
 		openRecharge() {
-			// 
-			// uni.navigateTo({
-			// 	url: '../../pages/me_recharge/me_recharge',
-			// 	complete (res) {
-			// 		console.log(res)
-			// 	}
-			// })
+			uni.navigateTo({
+				url: '../../pages/me_recharge/me_recharge',
+				complete (res) {
+					console.log(res)
+				}
+			})
 		},
 		openCash() {
 			// 

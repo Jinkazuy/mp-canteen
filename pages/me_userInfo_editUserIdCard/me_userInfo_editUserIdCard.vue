@@ -22,6 +22,7 @@ import {mapGetters, mapMutations} from 'vuex'
 import Toast from '../../wxcomponents/weapp/dist/toast/toast'
 // 设置用户信息
 import {http_setUserInfoData} from '../../utils/http/http_setUserInfoData.js'
+import {http_validationUserIdCard} from '../../utils/http/http_validationUserIdCard.js'
 export default {
 	data() {
 		return {
@@ -52,8 +53,8 @@ export default {
 				// 这里发送员工号给后台，然后验证完了再发送数据给后台存储
 				// 返回号码规范： 0 成功， 1 员工号被使用， 2 员工号不存在
 				// let ValidateUserIdCard = await http_验证员工号
-				let ValidateUserIdCard = 0
-				
+				let ValidateUserIdCard = await http_validationUserIdCard(this.userIdCard)
+				console.log(ValidateUserIdCard)
 				if(ValidateUserIdCard === 0) {
 					// 存储
 					let res = await http_setUserInfoData({
@@ -76,9 +77,6 @@ export default {
 				} else if(ValidateUserIdCard === 2) {
 					Toast('员工号不存在')
 				}
-				
-				
-				
 				
 				
 				// 此时发送请求，如果返回成功的话，那么在http请求中手动设置本地store，那么这里就能获取到最新的地址的值

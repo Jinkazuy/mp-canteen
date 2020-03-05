@@ -8,7 +8,10 @@
 				// 开启下拉刷新
 				"enablePullDownRefresh": true,
 				// 距离页面底部多少像素触发onReachBottom事件
-				"onReachBottomDistance": 50
+				"onReachBottomDistance": 50,
+				"usingComponents":{
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
 			}
 		},
 		// 订单
@@ -60,6 +63,36 @@
 				}
 			}
 		},
+		// 评价结果
+		{
+			"path": "pages/order_evaluate_result/order_evaluate_result",
+			"style": {
+				"navigationBarTitleText": "感谢评价",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index",
+					// "van-button": "/wxcomponents/weapp/dist/button/index",
+					// "van-rate": "/wxcomponents/weapp/dist/rate/index"
+				}
+			}
+		},
+		// 退款结果页
+		{
+			"path": "pages/order_refund_detail/order_refund_detail",
+			"style": {
+				"navigationBarTitleText": "退款详情",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index",
+					// "van-button": "/wxcomponents/weapp/dist/button/index",
+					// "van-rate": "/wxcomponents/weapp/dist/rate/index"
+				}
+			}
+		},
 		// 我的
 		{
 			"path": "pages/me/me",
@@ -70,7 +103,8 @@
 					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
 					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
 					"van-button": "/wxcomponents/weapp/dist/button/index",
-					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-dialog": "/wxcomponents/weapp/dist/dialog/index"
 				}
 			}
 		},
@@ -126,8 +160,10 @@
 				"usingComponents":{
 					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
 					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
-					"van-button": "/wxcomponents/weapp/dist/button/index"
-					// "van-toast": "/wxcomponents/weapp/dist/toast/index"
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-picker": "/wxcomponents/weapp/dist/picker/index",
+					 "van-popup": "/wxcomponents/weapp/dist/popup/index"
 				}
 			}
 		},
@@ -150,6 +186,36 @@
 			"path": "pages/me_userInfo/me_userInfo",
 			"style": {
 				"navigationBarTitleText": "个人信息"
+			}
+		},
+		// 人脸照片上传
+		{
+			"path": "pages/me_faceUpLoad/me_faceUpLoad",
+			"style": {
+				"navigationBarTitleText": "人脸识别",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-rate": "/wxcomponents/weapp/dist/rate/index"
+				}
+			}
+		},
+		// 人脸照片上传 - 成功
+		{
+			"path": "pages/me_faceUpLoad_succ/me_faceUpLoad_succ",
+			"style": {
+				"navigationBarTitleText": "人脸识别",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					// 这里指向的就是button的组件的文件，它会自动去找index.wxml
+					// 然后在这个login页面就能用 <van-button>标签使用这个组件了；
+					// "van-toast": "/wxcomponents/weapp/dist/toast/index",
+					// "van-button": "/wxcomponents/weapp/dist/button/index"
+					// "van-rate": "/wxcomponents/weapp/dist/rate/index"
+				}
 			}
 		},
 		// 身份选择
@@ -213,7 +279,25 @@
 		{
 			"path": "pages/me_editUserPhone/me_editUserPhone",
 			"style": {
-				"navigationBarTitleText": "我的地址"
+				"navigationBarTitleText": "修改手机号",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-dialog": "/wxcomponents/weapp/dist/dialog/index"
+				}
+			}
+		},
+		// 修改手机号 - 验证码
+		{
+			"path": "pages/me_editUserPhone_verify/me_editUserPhone_verify",
+			"style": {
+				"navigationBarTitleText": "修改手机号",
+				// 下方是使用有赞团队的移动UI框架的button样式
+				"usingComponents":{
+					"van-button": "/wxcomponents/weapp/dist/button/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
+				}
 			}
 		},
 		// 搜索页
@@ -281,7 +365,8 @@
 					"van-tab": "/wxcomponents/weapp/dist/tab/index",
 					"van-tabs": "/wxcomponents/weapp/dist/tabs/index",
 					// 浮层
-					"van-popup": "/wxcomponents/weapp/dist/popup/index"
+					"van-popup": "/wxcomponents/weapp/dist/popup/index",
+					"van-toast": "/wxcomponents/weapp/dist/toast/index"
 					
 				},
 				// 不允许页面上下滚动,这样就不会影响商品列表滚动时错误滚动页面，造成用户体验下降的情况
@@ -308,7 +393,9 @@
 					// "van-tabs": "/wxcomponents/weapp/dist/tabs/index",
 					// // 浮层
 					// "van-popup": "/wxcomponents/weapp/dist/popup/index"
-					
+					"van-toast": "/wxcomponents/weapp/dist/toast/index",
+					"van-popup": "/wxcomponents/weapp/dist/popup/index",
+					"van-button": "/wxcomponents/weapp/dist/button/index"
 				},
 				// 不允许页面上下滚动,这样就不会影响商品列表滚动时错误滚动页面，造成用户体验下降的情况
 				// "bounce": "none" 和 "disableScroll"都要设置
