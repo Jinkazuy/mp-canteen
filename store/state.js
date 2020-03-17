@@ -1,4 +1,9 @@
 const state = {
+	
+
+	// state只是缓存不是本地存储，所以需要持久化的数据，存到state时，也有要存到 localStorage 本地存储中
+	
+	
   // 用户基本数据,不包含敏感信息;
   store_UserInfo: {
 		avatarUrl: null,
@@ -10,35 +15,45 @@ const state = {
 		province: null
 	},
 	// 用户详细数据,包后台数据表中的数据;
-	store_UserInfoData: {
-		address: '123', // 用户地址
-		avatarUrl: null, // 头像imgURL
-		birth: null, // 生日
-		city: null, // 城市
-		country: null, // 国家
-		createTime: null, // 注册时间
-		dataSort: null, // 数据排序
-		email: null, // 邮箱
-		gender: null, // 性别 1 | 0
-		id: null, // 用户ID
-		idCard: '123', // 当用户选择内部员工时必填
-		isDelete: null, // 逻辑删除: 0:未删除 1:已删除
-		language: null, // 语言
-		mobile: null, // 手机号
-		nickName: null, // 昵称
-		openId: null, // string
-		passwd: null, // 登录密码
-		province: null, // 省份
-		sessionKey: null, // 
-		status: null, // 数据状态 0:正常  1:锁定
-		unionId: null, // 
-		updateTime: null, // 更新时间: 2020-11-11 00:00:00
-		userType: null, // 用户类型 0:内部 1:外部 当外部用户时, 不需要绑定员工号
-	},
+	store_UserInfoData: 
+		// 在初始化的时候，store的state中需要持久化的数据，应该先读取本地localstorage的内容
+		// localStorage.getItem("store_UserInfoData") || 
+		// 因为小城不支持window对象，但提供了别的存储到本地的API
+		// 但getStorageSync是同步版本，我们这里只同步版本获取本地的localstorage即可
+		// uni.getStorageSync的返回值就直接是读取到的内容
+		// 这在小程序其实没什么必要，因为小城不存在网页刷新的问题，所以缓存会一直存在，也就是说vuex的数据不会因为刷新消失
+		// 但是在网页端，需要持久化的数据，就必须存到本地第一份，然后在初始化的时候，也要先读取localstorage的数据，因为刷新网页会清除这个项目的缓存
+		uni.getStorageSync('store_UserInfoData') || 
+		{
+			address: '123', // 用户地址
+			avatarUrl: null, // 头像imgURL
+			birth: null, // 生日
+			city: null, // 城市
+			country: null, // 国家
+			createTime: null, // 注册时间
+			dataSort: null, // 数据排序
+			email: null, // 邮箱
+			gender: null, // 性别 1 | 0
+			id: null, // 用户ID
+			idCard: '123', // 当用户选择内部员工时必填
+			isDelete: null, // 逻辑删除: 0:未删除 1:已删除
+			language: null, // 语言
+			mobile: null, // 手机号
+			nickName: null, // 昵称
+			openId: null, // string
+			passwd: null, // 登录密码
+			province: null, // 省份
+			sessionKey: null, // 
+			status: null, // 数据状态 0:正常  1:锁定
+			unionId: null, // 
+			updateTime: null, // 更新时间: 2020-11-11 00:00:00
+			userType: null, // 用户类型 0:内部 1:外部 当外部用户时, 不需要绑定员工号
+		},
 	// 用户人脸识别上传成功后的图片地址
 	store_userFaceVbURL: '', 
 	
 	// 用户登录后,后台返回的token值,用于每次发送请求时判断用户是否属于后台真的登录状态;
+	// 其实token也应该在本地存一份，而且读取的时候也应该先读本地的token
 	store_token: '', // token过期时间由后台订, 在http_login_setToken时获取过期时间,然后在util的isLogin中判断是否过期
 	store_tokenExpiration: '', // 过期时间
 
